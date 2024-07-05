@@ -1,0 +1,44 @@
+<h2>Lista de Productos</h2>
+<table class="table table-striped">
+    <thead class="table-primary">
+        <tr>
+            <th scope="col">Vista Previa</th>
+            <th scope="col">Producto</th>
+            <th scope="col">Precio</th>
+            <th scope="col">Stock</th>
+            <th scope="col" class="text-center"><span *ngIf="currentRoute.url == '/bakehouse'">Cantidad</span></th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody class="table align-middle">
+        <tr *ngFor="let product of products" [ngClass]="{'discount table-success': product.discount}">
+            <td>
+                <img class="img-thumbnail" 
+                    [src]="product.image" 
+                    [alt]="product.name">
+            </td>
+            
+            <td>{{product.name}}</td>
+            
+            <td>{{product.price | currency}}</td>
+            
+            <td *ngIf="product.stock > 0; else sinStock">En Stock</td>
+
+            <ng-template #sinStock>
+                <td> <span class="bg-warning bg-gradient rounded-3">Sin Stock</span></td>
+            </ng-template>
+            
+            <td>
+                <app-input-number [(quantity)]="product.quantity" 
+                                    [available]="product.stock"
+                                    (quantityAlert)="quantityAlert($event)" 
+                                    *ngIf="product.stock > 0 && currentRoute.url == '/bakehouse'">
+                </app-input-number>    
+            </td>
+
+            <td>
+                <button *ngIf="product.stock > 0 && currentRoute.url == '/bakehouse'" class="btn btn-primary" (click)="addToCart(product)">Comprar</button>          
+            </td>
+        </tr>
+    </tbody>
+</table>

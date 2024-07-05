@@ -1,0 +1,24 @@
+<div class="input-group">
+    <button 
+        (click)="decQuantity()" 
+        class="btn btn-primary" 
+        type="button" 
+        id="button-minus">
+            -
+    </button>
+    <input 
+        [(ngModel)]="quantity"
+        (keydown)="keyboardQuantity($event)"
+        [value]="keybQuant"
+        type="text" 
+        class="form-control text-center" 
+        aria-label="Input con botones" 
+        aria-describedby="button-minus button-plus">
+    <button 
+        (click)="incQuantity()"
+        class="btn btn-primary" 
+        type="button" 
+        id="button-plus">
+            +
+    </button>
+</div>

@@ -1,0 +1,23 @@
+<h2>Carrito de Compras</h2>
+<table class="table table-striped">
+    <thead class="table-primary">
+        <tr>
+            <th scope="col">Producto</th>
+            <th scope="col">Cantidad</th>
+            <th scope="col">Precio Unitario</th>
+            <th scope="col">Sub Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let product of productsCart$ | async">
+            <td>{{product.name}}</td>
+            <td>{{product.quantity}}</td>
+            <td>{{product.price | currency}}</td>
+            <td>{{product.totalPrice | currency}}</td>
+        </tr>       
+        <tr>
+            <td colspan="3" class="text-end"><strong>Total</strong></td>
+            <td><strong>{{cartTotalPrice$ | async | currency}}</strong></td>
+        </tr>
+    </tbody>
+</table>
