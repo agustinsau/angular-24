@@ -6,6 +6,7 @@
             <th scope="col">Cantidad</th>
             <th scope="col">Precio Unitario</th>
             <th scope="col">Sub Total</th>
+            <th scope="col">Quitar</th>
         </tr>
     </thead>
     <tbody>
@@ -14,10 +15,12 @@
             <td>{{product.quantity}}</td>
             <td>{{product.price | currency}}</td>
             <td>{{product.totalPrice | currency}}</td>
+            <td><button class="btn btn-danger" type="button" (click)="deleteFromCart(product.name)">Quitar</button></td>
         </tr>       
         <tr>
             <td colspan="3" class="text-end"><strong>Total</strong></td>
             <td><strong>{{cartTotalPrice$ | async | currency}}</strong></td>
+            <td></td>
         </tr>
     </tbody>
 </table>

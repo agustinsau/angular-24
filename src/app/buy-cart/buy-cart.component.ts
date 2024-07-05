@@ -20,4 +20,8 @@ export class BuyCartComponent {
     this.productsCart$ = cart.productsCart.asObservable();
     this.cartTotalPrice$ = cart.cartTotal.asObservable();
   }
+
+  deleteFromCart(prodName: string){
+    this.cart.deleteProduct(prodName);
+  }
 }

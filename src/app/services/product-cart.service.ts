@@ -15,7 +15,7 @@ export class ProductCartService {
   private _productsCart: CartProduct[] = [];
   public productsCart: BehaviorSubject<CartProduct[]> = new BehaviorSubject (this._productsCart);
 
-  //monto total del carrito
+  //observable monto total del carrito
   public cartTotal: BehaviorSubject<number> = new BehaviorSubject<number>(0);
   
   constructor() { }
@@ -46,6 +46,7 @@ export class ProductCartService {
     this.updateTotalPrices();
   }
 
+  //actualiza los totales de mi carrito, tanto de cada producto como del total
   updateTotalPrices(): void {
     let cartTotalPrice : number = 0;
     let prodTotalPrice: number = 0;
@@ -63,10 +64,13 @@ export class ProductCartService {
     return this._productsCart;
   }
 
-  // deleteProduct(id: number): void {
-  //   this._productsCart = this._productsCart.filter(p => p.id !== id);
-  //   this.updateTotalPrices();
-  // }
+  deleteProduct(prodName: string): void {
+    this._productsCart = this._productsCart.filter(p => p.name !== prodName); //rearmo el carrito sin el producto que se quito
+    this.productsCart.next(this._productsCart); //actualizo el carrito en mi servicio
+    this.updateTotalPrices(); //actualizo el total de precios
+    //servicio para lista de productos en product list? actualizar quantity
+
+  }
 
 
 

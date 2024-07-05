@@ -18,8 +18,8 @@ export class ProductDataService {
   */
 
   public getAll(): Observable<Product[]>{
-    //tipado de lo que obtiene el get y su endpoint
     
+    //tipado de lo que obtiene el get y su endpoint
     return this.http.get<Product[]>(`${URL}/getAll`).pipe(
       tap((products: Product[]) => {
         products.forEach(product => product.quantity = 0);
