@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-input-number',
@@ -6,7 +6,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrls: ['./input-number.component.scss']
 })
 
-export class InputNumberComponent {
+export class InputNumberComponent implements OnInit{
   @Input() //comunicacion entre componentes
   quantity: number;
 
@@ -21,7 +21,10 @@ export class InputNumberComponent {
 
   keybQuant: string = '';
 
+  ngOnInit(): void{ };
+
   incQuantity(): void {
+    console.log('disponible desde increase ' + this.available);
     if(this.quantity < this.available){
       this.quantity++;
 

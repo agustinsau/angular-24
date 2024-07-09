@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Product, CartProduct } from '../product-list/Product';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
+import { ProductListStockService } from '../services/product-list-stock.service';
+
 
 /**
  * Logica del carrito
@@ -17,17 +19,19 @@ export class ProductCartService {
 
   //observable monto total del carrito
   public cartTotal: BehaviorSubject<number> = new BehaviorSubject<number>(0);
-  
-  constructor() { }
+
+  constructor(private stockService: ProductListStockService) { }
 
   private castCartProduct(product: Product): CartProduct {
     return {
         ...product,
         totalPrice: 0
     };
-}
+  }
 
   addToCart(product: Product): void {
+    //const stock = this.stockService.getStock(product.id);
+
     let item: CartProduct | undefined | null = null
 
     item = this._productsCart.find(v1 => v1.name == product.name); //arrow function para comparar
@@ -35,11 +39,14 @@ export class ProductCartService {
     let cartProduct: CartProduct = this.castCartProduct(product);
     
     if(!item){
-      this._productsCart.push({... cartProduct}); 
+      this._productsCart.push({... cartProduct});
 
     } else {
-      item.quantity+= product.quantity;
+      item.quantity += product.quantity;
     }
+
+    //actualiza el stock del producto en mi servicio
+    //this.stockService.updateStock(product.id, product.quantity); 
 
     //indico el siguiente valor del observable
     this.productsCart.next(this._productsCart);
@@ -64,13 +71,22 @@ export class ProductCartService {
     return this._productsCart;
   }
 
-  deleteProduct(prodName: string): void {
-    this._productsCart = this._productsCart.filter(p => p.name !== prodName); //rearmo el carrito sin el producto que se quito
-    this.productsCart.next(this._productsCart); //actualizo el carrito en mi servicio
-    this.updateTotalPrices(); //actualizo el total de precios
-    //servicio para lista de productos en product list? actualizar quantity
+  deleteProduct(prodId: number, quantity: number): void {
+    this._productsCart = this._productsCart.filter(p => p.id !== prodId); //rearma el carrito sin el producto que se quito
+    this.productsCart.next(this._productsCart); //actualiza el carrito en mi servicio
+
+    this.updateTotalPrices(); //actualiza el total de precios
+
+    this.stockService.updateStock(prodId, -quantity); //devuelve el stock al producto
 
   }
+
+  // deleteProduct(prodName: string): void {
+  //   this._productsCart = this._productsCart.filter(p => p.name !== prodName); //rearma el carrito sin el producto que se quito
+  //   this.productsCart.next(this._productsCart); //actualiza el carrito en mi servicio
+  //   this.updateTotalPrices(); //actualiza el total de precios
+
+  // }
 
 
 

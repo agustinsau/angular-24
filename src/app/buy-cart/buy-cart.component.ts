@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { ProductCartService } from '../services/product-cart.service';
+import { Component, OnInit } from '@angular/core';
+import { ProductCartService,  } from '../services/product-cart.service';
 import { CartProduct } from '../product-list/Product';
 import { Observable } from 'rxjs';
 
@@ -9,19 +9,20 @@ import { Observable } from 'rxjs';
   styleUrls: ['./buy-cart.component.scss']
 })
 
-export class BuyCartComponent {
-  //buyCart: Cart;
-
+export class BuyCartComponent implements OnInit{
+  ngOnInit(): void{ };
+  
   //$ indica que la variable es un observable
   productsCart$: Observable <CartProduct[]>; 
   cartTotalPrice$: Observable <number>;
 
-  constructor(private cart: ProductCartService){
-    this.productsCart$ = cart.productsCart.asObservable();
-    this.cartTotalPrice$ = cart.cartTotal.asObservable();
+  constructor(private cartSrv: ProductCartService){
+    this.productsCart$ = cartSrv.productsCart.asObservable();
+    this.cartTotalPrice$ = cartSrv.cartTotal.asObservable();
+
   }
 
-  deleteFromCart(prodName: string){
-    this.cart.deleteProduct(prodName);
+  deleteFromCart(prodId: number, quantity: number){
+    this.cartSrv.deleteProduct(prodId, quantity);    
   }
 }

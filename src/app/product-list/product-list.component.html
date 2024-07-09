@@ -22,7 +22,7 @@
             
             <td>{{product.price | currency}}</td>
             
-            <td *ngIf="product.stock > 0; else sinStock">En Stock</td>
+            <td *ngIf="getStock(product.id) > 0; else sinStock">En Stock</td>
 
             <ng-template #sinStock>
                 <td> <span class="bg-warning bg-gradient rounded-3">Sin Stock</span></td>
@@ -30,14 +30,14 @@
             
             <td>
                 <app-input-number [(quantity)]="product.quantity" 
-                                    [available]="product.stock"
+                                    [available]="getStock(product.id)"
                                     (quantityAlert)="quantityAlert($event)" 
-                                    *ngIf="product.stock > 0 && currentRoute.url == '/bakehouse'">
+                                    *ngIf="getStock(product.id) > 0 && currentRoute.url == '/bakehouse'">
                 </app-input-number>    
             </td>
 
             <td>
-                <button *ngIf="product.stock > 0 && currentRoute.url == '/bakehouse'" class="btn btn-primary" (click)="addToCart(product)">Comprar</button>          
+                <button *ngIf="getStock(product.id) > 0 && currentRoute.url == '/bakehouse'" class="btn btn-primary" (click)="addToCart(product)">Comprar</button>          
             </td>
         </tr>
     </tbody>

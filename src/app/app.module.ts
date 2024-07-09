@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { ProductListComponent } from './product-list/product-list.component';
 import { BuyCartComponent } from './buy-cart/buy-cart.component';
 
-import { HttpClientModule} from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 
 import { FormsModule } from '@angular/forms';
 import { BakehouseProductsComponent } from './bakehouse-products/bakehouse-products.component';

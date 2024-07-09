@@ -15,7 +15,7 @@
             <td>{{product.quantity}}</td>
             <td>{{product.price | currency}}</td>
             <td>{{product.totalPrice | currency}}</td>
-            <td><button class="btn btn-danger" type="button" (click)="deleteFromCart(product.name)">Quitar</button></td>
+            <td><button class="btn btn-danger" type="button" (click)="deleteFromCart(product.id, product.quantity)">Quitar</button></td>
         </tr>       
         <tr>
             <td colspan="3" class="text-end"><strong>Total</strong></td>
