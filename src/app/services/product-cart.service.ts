@@ -73,24 +73,13 @@ export class ProductCartService {
 
   deleteProduct(prodId: number, quantity: number): void {
     this._productsCart = this._productsCart.filter(p => p.id !== prodId); //rearma el carrito sin el producto que se quito
-    this.productsCart.next(this._productsCart); //actualiza el carrito en mi servicio
+    this.productsCart.next(this._productsCart); //actualiza el carrito en el servicio
 
     this.updateTotalPrices(); //actualiza el total de precios
 
     this.stockService.updateStock(prodId, -quantity); //devuelve el stock al producto
 
   }
-
-  // deleteProduct(prodName: string): void {
-  //   this._productsCart = this._productsCart.filter(p => p.name !== prodName); //rearma el carrito sin el producto que se quito
-  //   this.productsCart.next(this._productsCart); //actualiza el carrito en mi servicio
-  //   this.updateTotalPrices(); //actualiza el total de precios
-
-  // }
-
-
-
-  
 
   
 }

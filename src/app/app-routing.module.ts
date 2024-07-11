@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { BakehouseComponent } from './bakehouse/bakehouse.component';
 import { BakehouseAboutComponent } from './bakehouse-about/bakehouse-about.component';
 import { BakehouseProductsComponent } from './bakehouse-products/bakehouse-products.component';
+import { BakehouseContactComponent } from './bakehouse-contact/bakehouse-contact.component';
 
 const routes: Routes = [
   //Aqui los routes 
@@ -23,6 +24,10 @@ const routes: Routes = [
     path: 'products',
     component: BakehouseProductsComponent
   },
+  {
+    path: 'contact',
+    component: BakehouseContactComponent
+  }
   
 ];
 

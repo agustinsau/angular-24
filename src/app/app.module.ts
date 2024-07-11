@@ -13,6 +13,7 @@ import { BakehouseProductsComponent } from './bakehouse-products/bakehouse-produ
 import { BakehouseAboutComponent } from './bakehouse-about/bakehouse-about.component';
 import { BakehouseComponent } from './bakehouse/bakehouse.component';
 import { InputNumberComponent } from './input-number/input-number.component';
+import { BakehouseContactComponent } from './bakehouse-contact/bakehouse-contact.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { InputNumberComponent } from './input-number/input-number.component';
     BakehouseProductsComponent,
     BakehouseAboutComponent,
     BakehouseComponent,
-    InputNumberComponent
+    InputNumberComponent,
+    BakehouseContactComponent
   ],
   imports: [
     BrowserModule,

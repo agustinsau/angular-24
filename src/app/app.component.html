@@ -16,7 +16,7 @@
           <a class="nav-link" [routerLink]="['/about']">Sobre Nosotros</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/contacto']">Contacto</a>
+          <a class="nav-link" [routerLink]="['/contact']">Contacto</a>
         </li>
       </ul>
     </div>
@@ -37,10 +37,10 @@
           <div class="col-md-4">
               <h5>Enlaces útiles</h5>
               <ul class="list-unstyled">
-                  <li><a href="#" class="text-white text-decoration-none">Inicio</a></li>
-                  <li><a href="#" class="text-white text-decoration-none">Servicios</a></li>
-                  <li><a href="#" class="text-white text-decoration-none">Contacto</a></li>
-                  <li><a href="#" class="text-white text-decoration-none">Política de privacidad</a></li>
+                  <li><a [routerLink]="['/']" class="text-white text-decoration-none">Inicio</a></li>
+                  <li><a [routerLink]="['/products']" class="text-white text-decoration-none">Productos</a></li>
+                  <li><a [routerLink]="['/about']" class="text-white text-decoration-none">Sobre Nosotros</a></li>
+                  <li><a [routerLink]="['/contact']" class="text-white text-decoration-none">Contacto</a></li>
               </ul>
           </div>
           <div class="col-md-4">
